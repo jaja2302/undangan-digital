@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card-hover-effect";
-import { MovingBorder } from "@/components/ui/moving-border";
 import { Calendar, Clock, MapPin } from "lucide-react";
 
 export const EventDetails = () => {
@@ -72,9 +71,9 @@ export const EventDetails = () => {
 
                   <p className="text-sm text-gray-400 mb-4">{event.address}</p>
 
-                  <MovingBorder duration={2000} className="p-3">
+                  <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-lg p-3 inline-block">
                     <div className="text-white font-semibold">Lihat Lokasi</div>
-                  </MovingBorder>
+                  </div>
                 </div>
               </Card>
             </motion.div>

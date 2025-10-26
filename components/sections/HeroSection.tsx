@@ -69,14 +69,14 @@ export const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex justify-center"
         >
-          <MovingBorder duration={3000} className="p-4">
+          <div className="bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg p-4">
             <div className="flex items-center space-x-2 text-white">
-              <Heart className="w-6 h-6 text-red-500" />
+              <Heart className="w-6 h-6 text-white" />
               <span className="text-lg font-semibold">
                 Konfirmasi Kehadiran
               </span>
             </div>
-          </MovingBorder>
+          </div>
         </motion.div>
       </div>
     </div>

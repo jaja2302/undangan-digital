@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { ClientOnly } from "@/components/ui/client-only";
 
 export const PhotoGallery = () => {
   const photos = [
@@ -12,42 +13,42 @@ export const PhotoGallery = () => {
       quote: "Momen pertama kami bertemu",
       name: "Foto Pertama",
       title: "Pertemuan Pertama",
-      src: "/api/placeholder/400/400?seed=1",
+      src: "https://picsum.photos/400/400?random=1",
     },
     {
       id: "liburan-pantai",
       quote: "Liburan bersama di pantai",
       name: "Liburan Pantai",
       title: "Momen Bahagia",
-      src: "/api/placeholder/400/400?seed=2",
+      src: "https://picsum.photos/400/400?random=2",
     },
     {
       id: "keluarga-besar",
       quote: "Acara keluarga besar",
       name: "Keluarga Besar",
       title: "Bersama Keluarga",
-      src: "/api/placeholder/400/400?seed=3",
+      src: "https://picsum.photos/400/400?random=3",
     },
     {
       id: "malam-romantis",
       quote: "Malam romantis di restoran",
       name: "Malam Romantis",
       title: "Date Night",
-      src: "/api/placeholder/400/400?seed=4",
+      src: "https://picsum.photos/400/400?random=4",
     },
     {
       id: "petualangan-gunung",
       quote: "Perjalanan ke gunung",
       name: "Petualangan Gunung",
       title: "Adventure Time",
-      src: "/api/placeholder/400/400?seed=5",
+      src: "https://picsum.photos/400/400?random=5",
     },
     {
       id: "sebelum-lamaran",
       quote: "Momen sebelum lamaran",
       name: "Sebelum Lamaran",
       title: "Pre-Proposal",
-      src: "/api/placeholder/400/400?seed=6",
+      src: "https://picsum.photos/400/400?random=6",
     },
   ];
 
@@ -69,12 +70,14 @@ export const PhotoGallery = () => {
         </motion.div>
 
         <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-md">
-          <InfiniteMovingCards
-            items={photos}
-            direction="right"
-            speed="slow"
-            className="w-full"
-          />
+          <ClientOnly>
+            <InfiniteMovingCards
+              items={photos}
+              direction="right"
+              speed="slow"
+              className="w-full"
+            />
+          </ClientOnly>
         </div>
       </div>
     </AuroraBackground>

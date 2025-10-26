@@ -14,7 +14,7 @@ export const TestimonialsSection = () => {
         "Semoga pernikahan kalian berjalan lancar dan penuh berkah. Selamat menempuh hidup baru!",
       name: "Budi Santoso",
       designation: "Saudara Ahmad",
-      src: "/api/placeholder/300/300?seed=1",
+      src: "https://picsum.photos/300/300?random=9",
     },
     {
       id: "dewi-kartika",
@@ -22,7 +22,7 @@ export const TestimonialsSection = () => {
         "Kalian adalah pasangan yang sangat cocok. Semoga selalu bahagia dan harmonis selamanya.",
       name: "Dewi Kartika",
       designation: "Saudari Siti",
-      src: "/api/placeholder/300/300?seed=2",
+      src: "https://picsum.photos/300/300?random=10",
     },
     {
       id: "ustadz-ahmad",
@@ -30,7 +30,7 @@ export const TestimonialsSection = () => {
         "Doa terbaik untuk pernikahan kalian. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.",
       name: "Ustadz Ahmad",
       designation: "Guru Mengaji",
-      src: "/api/placeholder/300/300?seed=3",
+      src: "https://picsum.photos/300/300?random=11",
     },
     {
       id: "ibu-sari",
@@ -38,7 +38,7 @@ export const TestimonialsSection = () => {
         "Kalian adalah contoh pasangan yang ideal. Semoga cinta kalian abadi selamanya.",
       name: "Ibu Sari",
       designation: "Ibu Ahmad",
-      src: "/api/placeholder/300/300?seed=4",
+      src: "https://picsum.photos/300/300?random=12",
     },
     {
       id: "bapak-agus",
@@ -46,7 +46,7 @@ export const TestimonialsSection = () => {
         "Selamat untuk pernikahan kalian. Semoga menjadi keluarga yang bahagia dan harmonis.",
       name: "Bapak Agus",
       designation: "Ayah Siti",
-      src: "/api/placeholder/300/300?seed=5",
+      src: "https://picsum.photos/300/300?random=13",
     },
   ];
 
@@ -75,7 +75,9 @@ export const TestimonialsSection = () => {
         </motion.div>
 
         <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-md">
-          <AnimatedTestimonials testimonials={testimonials} />
+          <ClientOnly>
+            <AnimatedTestimonials testimonials={testimonials} />
+          </ClientOnly>
         </div>
       </div>
     </div>

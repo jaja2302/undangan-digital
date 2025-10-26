@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FloatingDock } from "@/components/ui/floating-dock";
+import { FloatingNav } from "@/components/ui/floating-navbar";
 import { MusicPlayer } from "@/components/ui/music-player";
 import { GiftRegistry } from "@/components/ui/gift-registry";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -15,35 +15,35 @@ import { Heart, Calendar, Camera, Users, Gift } from "lucide-react";
 export default function WeddingInvitation() {
   const navItems = [
     {
-      title: "Home",
-      href: "#home",
+      name: "Home",
+      link: "#home",
       icon: <Heart className="h-4 w-4" />,
     },
     {
-      title: "Couple",
-      href: "#couple",
+      name: "Couple",
+      link: "#couple",
       icon: <Users className="h-4 w-4" />,
     },
     {
-      title: "Events",
-      href: "#events",
+      name: "Events",
+      link: "#events",
       icon: <Calendar className="h-4 w-4" />,
     },
     {
-      title: "Gallery",
-      href: "#gallery",
+      name: "Gallery",
+      link: "#gallery",
       icon: <Camera className="h-4 w-4" />,
     },
     {
-      title: "Gifts",
-      href: "#gifts",
+      name: "Gifts",
+      link: "#gifts",
       icon: <Gift className="h-4 w-4" />,
     },
   ];
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <FloatingDock items={navItems} />
+      <FloatingNav navItems={navItems} />
       <HeroSection />
       <CoupleSection />
       <EventDetails />

@@ -49,7 +49,7 @@ export const CoupleSection = () => {
                 <CardItem translateZ="100" className="w-full mt-4">
                   <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white/20">
                     <img
-                      src="/api/placeholder/300/300"
+                      src="https://picsum.photos/300/300?random=7"
                       alt="Ahmad"
                       className="w-full h-full object-cover"
                     />
@@ -100,7 +100,7 @@ export const CoupleSection = () => {
                 <CardItem translateZ="100" className="w-full mt-4">
                   <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white/20">
                     <img
-                      src="/api/placeholder/300/300"
+                      src="https://picsum.photos/300/300?random=8"
                       alt="Siti"
                       className="w-full h-full object-cover"
                     />
