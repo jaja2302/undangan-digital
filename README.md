@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Undangan Digital Pernikahan
 
-## Getting Started
+Undangan pernikahan digital yang indah dengan berbagai efek visual menggunakan komponen Aceternity UI.
 
-First, run the development server:
+## ✨ Fitur
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Hero Section** dengan efek Background Beams dan Spotlight
+- **Countdown Timer** untuk menghitung mundur ke hari pernikahan
+- **Profil Pasangan** dengan efek Card Hover dan Aurora Background
+- **Detail Acara** dengan informasi lengkap waktu dan lokasi
+- **Galeri Foto** dengan efek hover yang menarik
+- **Ucapan & Doa** dari keluarga dan sahabat
+- **Gift Registry** untuk bantuan keuangan
+- **RSVP** untuk konfirmasi kehadiran
+- **Music Player** untuk musik latar
+- **Sparkles Effect** untuk efek bintang berkelap-kelip
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Komponen Aceternity UI yang Digunakan
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Background Beams
+- Aurora Background
+- Card Hover Effect
+- Text Generate Effect
+- Spotlight
+- Moving Border
+- Sparkles
+- Wobble Card
+- Countdown Timer
+- Testimonial Card
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Teknologi
 
-## Learn More
+- **Next.js 16** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS v4** - Styling
+- **Framer Motion** - Animations
+- **Lucide React** - Icons
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Instalasi
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone repository ini
+2. Install dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm install
+   # atau
+   yarn install
+   # atau
+   bun install
+   ```
 
-## Deploy on Vercel
+3. Jalankan development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm run dev
+   # atau
+   yarn dev
+   # atau
+   bun dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Buka [http://localhost:3000](http://localhost:3000) di browser
+
+## 🎯 Kustomisasi
+
+### Mengubah Data Pernikahan
+
+Edit file `app/page.tsx` untuk mengubah:
+
+- Nama pasangan pengantin
+- Tanggal pernikahan
+- Lokasi acara
+- Foto-foto
+- Ucapan testimonial
+
+### Mengubah Warna Tema
+
+Edit file `app/globals.css` untuk mengubah:
+
+- Warna gradient
+- Warna background
+- Warna accent
+
+### Menambahkan Musik
+
+Tambahkan file audio di folder `public/audio/` dan update komponen `MusicPlayer`.
+
+## 📱 Responsive Design
+
+Aplikasi ini sudah responsive dan akan terlihat bagus di:
+
+- Desktop
+- Tablet
+- Mobile
+
+## 🌟 Efek Visual
+
+- **Background Beams**: Sinar-sinar yang bergerak di background
+- **Aurora Background**: Efek aurora dengan gradient yang bergerak
+- **Card Hover**: Efek hover pada kartu dengan glow
+- **Text Generate**: Teks yang muncul secara bertahap
+- **Spotlight**: Efek spotlight yang mengikuti mouse
+- **Moving Border**: Border yang bergerak dengan gradient
+- **Sparkles**: Bintang-bintang berkelap-kelip
+- **Wobble Card**: Kartu yang bergoyang saat hover
+
+## 📄 Lisensi
+
+MIT License - bebas digunakan untuk proyek pribadi maupun komersial.
+
+## 🤝 Kontribusi
+
+Silakan buat issue atau pull request jika ada saran atau bug yang ditemukan.
+
+---
+
+Dibuat dengan ❤️ menggunakan Aceternity UI components
