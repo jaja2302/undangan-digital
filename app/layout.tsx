@@ -17,11 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id">
-      <body className="antialiased">
-        <div className="relative min-h-screen">
+    <html lang="id" className="w-full overflow-x-hidden">
+      <body className="antialiased w-full overflow-x-hidden">
+        <div className="relative min-h-screen w-full overflow-x-hidden">
           <BackgroundBeams />
-          <div className="relative z-10">{children}</div>
+          <div className="relative z-10 w-full">{children}</div>
           <GlobalMusicPlayer />
         </div>
       </body>

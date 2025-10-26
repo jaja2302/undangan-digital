@@ -53,7 +53,7 @@ export const HeroSection = () => {
   return (
     <div
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black pt-20"
     >
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"

@@ -56,7 +56,7 @@ export const useMusic = (config: MusicConfig) => {
     if (config.autoplay) {
       audio.play().catch((err) => {
         console.log("Autoplay blocked by browser:", err);
-        setError("Autoplay blocked. Click play button to start music.");
+        setError("Autoplay blocked. Click play button.");
       });
     }
 
