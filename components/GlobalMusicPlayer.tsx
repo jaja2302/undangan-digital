@@ -34,7 +34,7 @@ export const GlobalMusicPlayer = () => {
         <div className="flex items-center gap-3">
           {/* Music Info */}
           <div className="text-white text-sm max-w-32 truncate">
-            {music.songTitle}
+            {music.songTitle}bu
           </div>
 
           {/* Play/Pause Button */}

@@ -54,6 +54,11 @@ async function fetchData(): Promise<AttendanceData> {
 // Save data to JSONBin.io
 async function saveData(data: AttendanceData): Promise<boolean> {
   try {
+    console.log("Attempting to save to JSONBin.io...");
+    console.log("API URL:", `${JSONBIN_API_URL}/${JSONBIN_BIN_ID}`);
+    console.log("API Key exists:", !!JSONBIN_API_KEY);
+    console.log("Bin ID:", JSONBIN_BIN_ID);
+    
     const response = await fetch(`${JSONBIN_API_URL}/${JSONBIN_BIN_ID}`, {
       method: "PUT",
       headers: {
@@ -62,6 +67,17 @@ async function saveData(data: AttendanceData): Promise<boolean> {
       },
       body: JSON.stringify(data),
     });
+
+    console.log("Response status:", response.status);
+    console.log("Response ok:", response.ok);
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Error response from JSONBin:", errorText);
+    } else {
+      const responseData = await response.json();
+      console.log("Successfully saved to JSONBin:", responseData);
+    }
 
     return response.ok;
   } catch (error) {
