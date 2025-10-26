@@ -3,11 +3,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { WobbleCard } from "@/components/ui/wobble-card";
-import { MovingBorder } from "@/components/ui/moving-border";
+import { SectionBackground } from "@/components/ui/section-background";
 
 export const RSVPSection = () => {
   return (
-    <div className="py-20 bg-gradient-to-b from-black to-gray-900">
+    <SectionBackground>
       <div className="container mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,13 +40,13 @@ export const RSVPSection = () => {
             </WobbleCard>
           </div>
 
-          <MovingBorder duration={3000} className="p-4">
-            <div className="text-white font-semibold">
+          <div className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-lg p-6 border border-pink-500/20">
+            <div className="text-white font-semibold text-lg">
               Terima kasih atas doa dan dukungannya
             </div>
-          </MovingBorder>
+          </div>
         </motion.div>
       </div>
-    </div>
+    </SectionBackground>
   );
 };

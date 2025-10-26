@@ -11,7 +11,7 @@ import {
   Sparkles,
   Navigation,
 } from "lucide-react";
-import Image from "next/image";
+import { SectionBackground } from "@/components/ui/section-background";
 
 export const EventDetails = () => {
   // Timeline perjalanan cinta dengan foto
@@ -76,10 +76,7 @@ export const EventDetails = () => {
   };
 
   return (
-    <div
-      id="events"
-      className="py-20 bg-gradient-to-b from-gray-900 via-black to-gray-900"
-    >
+    <SectionBackground id="events">
       <div className="container mx-auto px-4">
         {/* Journey Timeline Section */}
         <motion.div
@@ -325,6 +322,6 @@ export const EventDetails = () => {
           ))}
         </div>
       </div>
-    </div>
+    </SectionBackground>
   );
 };

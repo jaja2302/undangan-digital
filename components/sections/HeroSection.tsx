@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card-hover-effect";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Spotlight } from "@/components/ui/spotlight";
 import { CountdownTimer } from "@/components/ui/countdown-timer";
 import { ClientOnly } from "@/components/ui/client-only";
@@ -17,25 +16,25 @@ import {
   Sparkles,
 } from "lucide-react";
 
+// Generate particles outside component to avoid impure function calls during render
+const generateParticles = () => {
+  return Array.from({ length: 15 }, () => {
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    const yEnd = Math.random() * -100;
+    const scale = Math.random() * 0.5 + 0.5;
+    const duration = Math.random() * 10 + 10;
+    const delay = Math.random() * 5;
+    const type = Math.floor(Math.random() * 3);
+
+    return { x, y, yEnd, scale, duration, delay, type };
+  });
+};
+
+const particles = generateParticles();
+
 export const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-
-  // Generate ALL random values at once
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 15 }, () => {
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
-        const yEnd = Math.random() * -100;
-        const scale = Math.random() * 0.5 + 0.5;
-        const duration = Math.random() * 10 + 10;
-        const delay = Math.random() * 5;
-        const type = Math.floor(Math.random() * 3);
-
-        return { x, y, yEnd, scale, duration, delay, type };
-      }),
-    []
-  );
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -46,46 +45,47 @@ export const HeroSection = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black"
     >
-      <BackgroundBeams />
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
       />
 
       {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: `${particle.x}vw`,
-              top: `${particle.y}vh`,
-            }}
-            initial={{
-              scale: particle.scale,
-              opacity: 0,
-            }}
-            animate={{
-              y: [`0vh`, `${particle.yEnd - particle.y}vh`],
-              opacity: [0, 0.8, 0],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-            }}
-          >
-            {particle.type === 0 ? (
-              <Heart className="w-4 h-4 text-pink-400" fill="currentColor" />
-            ) : particle.type === 1 ? (
-              <Sparkles className="w-4 h-4 text-yellow-400" />
-            ) : (
-              <div className="w-2 h-2 bg-purple-400 rounded-full" />
-            )}
-          </motion.div>
-        ))}
-      </div>
+      <ClientOnly>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {particles.map((particle, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              style={{
+                left: `${particle.x}vw`,
+                top: `${particle.y}vh`,
+              }}
+              initial={{
+                scale: particle.scale,
+                opacity: 0,
+              }}
+              animate={{
+                y: [`0vh`, `${particle.yEnd - particle.y}vh`],
+                opacity: [0, 0.8, 0],
+              }}
+              transition={{
+                duration: particle.duration,
+                repeat: Infinity,
+                delay: particle.delay,
+              }}
+            >
+              {particle.type === 0 ? (
+                <Heart className="w-4 h-4 text-pink-400" fill="currentColor" />
+              ) : particle.type === 1 ? (
+                <Sparkles className="w-4 h-4 text-yellow-400" />
+              ) : (
+                <div className="w-2 h-2 bg-purple-400 rounded-full" />
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </ClientOnly>
 
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         {/* Opening text */}
@@ -199,7 +199,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mb-8"
+          className="mb-6"
         >
           <p className="text-gray-400 text-sm mb-4 uppercase tracking-wider">
             Counting Down To Our Special Day
@@ -209,12 +209,26 @@ export const HeroSection = () => {
           </ClientOnly>
         </motion.div>
 
+        {/* Quote */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="mb-6"
+        >
+          <p className="text-gray-500 text-xs italic max-w-xl mx-auto leading-relaxed">
+            &ldquo;Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia
+            menciptakan pasangan-pasangan untukmu dari jenismu sendiri&rdquo;
+          </p>
+          <p className="text-pink-400 text-xs mt-1">— QS. Ar-Rum: 21</p>
+        </motion.div>
+
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
         >
           {/* RSVP Button */}
           <motion.button
@@ -266,20 +280,6 @@ export const HeroSection = () => {
           >
             <ChevronDown className="w-8 h-8 text-gray-400 hover:text-white transition-colors" />
           </motion.div>
-        </motion.div>
-
-        {/* Quote */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-20 left-0 right-0 text-center px-4"
-        >
-          <p className="text-gray-500 text-sm italic max-w-2xl mx-auto">
-            "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
-            pasangan-pasangan untukmu dari jenismu sendiri"
-          </p>
-          <p className="text-pink-400 text-xs mt-2">— QS. Ar-Rum: 21</p>
         </motion.div>
       </div>
     </div>

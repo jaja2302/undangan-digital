@@ -2,17 +2,10 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AuroraBackground } from "@/components/ui/aurora-background";
+import { SectionBackground } from "@/components/ui/section-background";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { ClientOnly } from "@/components/ui/client-only";
-import {
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Heart,
-  Download,
-  ZoomIn,
-} from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Heart, ZoomIn } from "lucide-react";
 
 export const PhotoGallery = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
@@ -102,7 +95,7 @@ export const PhotoGallery = () => {
   };
 
   return (
-    <AuroraBackground id="gallery" className="py-20 relative overflow-hidden">
+    <SectionBackground id="gallery" className="relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-10 left-10 text-6xl opacity-20">📸</div>
       <div className="absolute bottom-10 right-10 text-6xl opacity-20">💕</div>
@@ -131,7 +124,7 @@ export const PhotoGallery = () => {
         </motion.div>
 
         {/* Infinite Carousel */}
-        <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-md mb-12">
+        <div className="relative w-full overflow-hidden mb-12 -mx-4">
           <ClientOnly>
             <InfiniteMovingCards
               items={photos}
@@ -286,6 +279,6 @@ export const PhotoGallery = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </AuroraBackground>
+    </SectionBackground>
   );
 };

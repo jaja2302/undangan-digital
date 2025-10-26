@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { AuroraBackground } from "@/components/ui/aurora-background";
+import { SectionBackground } from "@/components/ui/section-background";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { Heart, Instagram, Camera, Sparkles } from "lucide-react";
 
@@ -67,7 +67,7 @@ export const CoupleSection = () => {
   };
 
   return (
-    <AuroraBackground id="couple" className="py-20 relative overflow-hidden">
+    <SectionBackground id="couple" className="relative overflow-hidden">
       {/* Floating hearts animation - Full screen coverage */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
@@ -481,6 +481,6 @@ export const CoupleSection = () => {
           </div>
         </motion.div>
       </div>
-    </AuroraBackground>
+    </SectionBackground>
   );
 };

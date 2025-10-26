@@ -2,8 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { SparklesCore } from "@/components/ui/sparkles";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { SectionBackground } from "@/components/ui/section-background";
 import { ClientOnly } from "@/components/ui/client-only";
 
 export const TestimonialsSection = () => {
@@ -51,15 +51,8 @@ export const TestimonialsSection = () => {
   ];
 
   return (
-    <div className="py-20 bg-gradient-to-b from-gray-900 to-black relative">
-      <ClientOnly>
-        <SparklesCore
-          className="absolute inset-0"
-          particleColor="#FFFFFF"
-          particleDensity={0.3}
-        />
-      </ClientOnly>
-      <div className="container mx-auto px-4 relative z-10">
+    <SectionBackground>
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,6 +73,6 @@ export const TestimonialsSection = () => {
           </ClientOnly>
         </div>
       </div>
-    </div>
+    </SectionBackground>
   );
 };
