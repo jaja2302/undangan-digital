@@ -3,8 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 // JSONBin.io configuration
 const JSONBIN_API_URL = "https://api.jsonbin.io/v3/b";
-const JSONBIN_BIN_ID = process.env.JSONBIN_BIN_ID || "your-bin-id";
-const JSONBIN_API_KEY = process.env.JSONBIN_API_KEY || "your-api-key";
+const JSONBIN_BIN_ID = "68fe03f543b1c97be9820c82";
+const JSONBIN_API_KEY =
+  "$2a$10$./rPUX5Zis/LoMEn.PxvZOoe7zbWTM0pQGmGpxLVRlB1d7.Rosj1K";
 
 // Type definitions
 interface Attendee {
@@ -57,8 +58,14 @@ async function saveData(data: AttendanceData): Promise<boolean> {
     console.log("Attempting to save to JSONBin.io...");
     console.log("API URL:", `${JSONBIN_API_URL}/${JSONBIN_BIN_ID}`);
     console.log("API Key exists:", !!JSONBIN_API_KEY);
+    console.log(
+      "API Key (first 20 chars):",
+      JSONBIN_API_KEY.substring(0, 20) + "..."
+    );
+    console.log("Full API Key:", JSONBIN_API_KEY);
     console.log("Bin ID:", JSONBIN_BIN_ID);
-    
+    console.log("Environment check - NODE_ENV:", process.env.NODE_ENV);
+
     const response = await fetch(`${JSONBIN_API_URL}/${JSONBIN_BIN_ID}`, {
       method: "PUT",
       headers: {
@@ -70,7 +77,7 @@ async function saveData(data: AttendanceData): Promise<boolean> {
 
     console.log("Response status:", response.status);
     console.log("Response ok:", response.ok);
-    
+
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Error response from JSONBin:", errorText);
