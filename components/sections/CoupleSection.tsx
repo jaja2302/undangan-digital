@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionBackground } from "@/components/ui/section-background";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { useWeddingData } from "@/hooks/useWeddingData";
 import { Heart, Instagram, Camera, Sparkles } from "lucide-react";
 
 // Fixed values to avoid hydration mismatch
@@ -39,32 +40,30 @@ const brideHeartAnimations = [
 export const CoupleSection = () => {
   const [groomHovered, setGroomHovered] = useState(false);
   const [brideHovered, setBrideHovered] = useState(false);
+  const { data, loading, error } = useWeddingData();
 
-  const groom = {
-    name: "Ahmad Rizki",
-    nickname: "Rizki",
-    fullName: "Ahmad Rizki Maulana, S.Kom",
-    parents: {
-      father: "Bapak H. Budi Santoso",
-      mother: "Ibu Hj. Sari Rahmawati",
-    },
-    instagram: "@ahmadrizki",
-    image: "https://picsum.photos/seed/groom/400/400",
-    description: "Putra pertama dari pasangan",
-  };
+  if (loading) {
+    return (
+      <SectionBackground id="couple">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-xl">Loading...</div>
+        </div>
+      </SectionBackground>
+    );
+  }
 
-  const bride = {
-    name: "Siti Nurhaliza",
-    nickname: "Siti",
-    fullName: "Siti Nurhaliza Azzahra, S.E",
-    parents: {
-      father: "Bapak H. Agus Wijaya",
-      mother: "Ibu Hj. Dewi Lestari",
-    },
-    instagram: "@sitinurhaliza",
-    image: "https://picsum.photos/seed/bride/400/400",
-    description: "Putri pertama dari pasangan",
-  };
+  if (error || !data) {
+    return (
+      <SectionBackground id="couple">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-xl">Error loading data</div>
+        </div>
+      </SectionBackground>
+    );
+  }
+
+  const groom = data.couple.groom;
+  const bride = data.couple.bride;
 
   return (
     <SectionBackground id="couple" className="relative overflow-hidden">

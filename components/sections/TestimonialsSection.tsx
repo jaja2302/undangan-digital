@@ -4,51 +4,33 @@ import React from "react";
 import { motion } from "framer-motion";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { SectionBackground } from "@/components/ui/section-background";
+import { useWeddingData } from "@/hooks/useWeddingData";
 import { ClientOnly } from "@/components/ui/client-only";
 
 export const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      id: "budi-santoso",
-      quote:
-        "Semoga pernikahan kalian berjalan lancar dan penuh berkah. Selamat menempuh hidup baru!",
-      name: "Budi Santoso",
-      designation: "Saudara Ahmad",
-      src: "https://picsum.photos/300/300?random=9",
-    },
-    {
-      id: "dewi-kartika",
-      quote:
-        "Kalian adalah pasangan yang sangat cocok. Semoga selalu bahagia dan harmonis selamanya.",
-      name: "Dewi Kartika",
-      designation: "Saudari Siti",
-      src: "https://picsum.photos/300/300?random=10",
-    },
-    {
-      id: "ustadz-ahmad",
-      quote:
-        "Doa terbaik untuk pernikahan kalian. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.",
-      name: "Ustadz Ahmad",
-      designation: "Guru Mengaji",
-      src: "https://picsum.photos/300/300?random=11",
-    },
-    {
-      id: "ibu-sari",
-      quote:
-        "Kalian adalah contoh pasangan yang ideal. Semoga cinta kalian abadi selamanya.",
-      name: "Ibu Sari",
-      designation: "Ibu Ahmad",
-      src: "https://picsum.photos/300/300?random=12",
-    },
-    {
-      id: "bapak-agus",
-      quote:
-        "Selamat untuk pernikahan kalian. Semoga menjadi keluarga yang bahagia dan harmonis.",
-      name: "Bapak Agus",
-      designation: "Ayah Siti",
-      src: "https://picsum.photos/300/300?random=13",
-    },
-  ];
+  const { data, loading, error } = useWeddingData();
+
+  if (loading) {
+    return (
+      <SectionBackground>
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-xl">Loading...</div>
+        </div>
+      </SectionBackground>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <SectionBackground>
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-xl">Error loading data</div>
+        </div>
+      </SectionBackground>
+    );
+  }
+
+  const testimonials = data.testimonials;
 
   return (
     <SectionBackground>

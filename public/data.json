@@ -1,0 +1,199 @@
+{
+  "hero": {
+    "groomName": "Jaja",
+    "brideName": "Elsa",
+    "groomFullName": "Jaja Valentino",
+    "brideFullName": "Elsa Putri Mayanti Simamarta, S.E",
+    "weddingDate": "Sabtu, 20 Desember 2028",
+    "weddingTime": "Pukul 10:00 WIB",
+    "venue": "Hotel Golden Tulip",
+    "location": "Medan",
+    "targetDate": "2028-12-20T10:00:00",
+    "quote": "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri",
+    "quoteSource": "— QS. Ar-Rum: 21"
+  },
+  "couple": {
+    "groom": {
+      "name": "Jaja Valentino",
+      "nickname": "Jojok",
+      "fullName": "Jaja Valentino",
+      "parents": {
+        "father": "Bapak Human Destroyer",
+        "mother": "Ibu Princess Lemonade"
+      },
+      "instagram": "@jajavalenntino",
+      "image": "https://picsum.photos/seed/groom/400/400",
+      "description": "Putra pertama dari pasangan"
+    },
+    "bride": {
+      "name": "Elsa Putri Mayanti Simamarta",
+      "nickname": "Elelel",
+      "fullName": "Elsa Putri Mayanti Simamarta",
+      "parents": {
+        "father": "Bapak Isekai ",
+        "mother": "Ibu Holly Sword Babaleon"
+      },
+      "instagram": "@elsaputrimayantisimamarta",
+      "image": "https://picsum.photos/seed/bride/400/400",
+      "description": "Putri pertama dari pasangan"
+    }
+  },
+  "events": {
+    "journey": [
+      {
+        "year": "2020",
+        "title": "Pertemuan Pertama",
+        "description": "Takdir mempertemukan kami di kampus",
+        "icon": "✨",
+        "image": "https://picsum.photos/seed/first-meet/400/300"
+      },
+      {
+        "year": "2021",
+        "title": "Jadian",
+        "description": "Dimulainya komitmen untuk saling melengkapi",
+        "icon": "💕",
+        "image": "https://picsum.photos/seed/dating/400/300"
+      },
+      {
+        "year": "2023",
+        "title": "Lamaran",
+        "description": "Momen sakral penyatuan dua keluarga",
+        "icon": "💍",
+        "image": "https://picsum.photos/seed/engagement/400/300"
+      },
+      {
+        "year": "2028",
+        "title": "Pernikahan",
+        "description": "Hari yang kami nantikan bersama",
+        "icon": "👰",
+        "image": "https://picsum.photos/seed/wedding/400/300"
+      }
+    ],
+    "ceremonies": [
+      {
+        "title": "Akad Nikah",
+        "time": "08:00 WIB",
+        "date": "15 Juni 2024",
+        "location": "Dunia Anime Onepiec",
+        "address": "Jl. Sudirman No. 456, Medan",
+        "color": "from-pink-500 to-rose-500",
+        "lat": -6.2215,
+        "lng": 106.8145,
+        "mapUrl": "https://www.google.com/maps?q=-6.2215,106.8145"
+      },
+      {
+        "title": "Resepsi Pernikahan",
+        "time": "19:00 WIB",
+        "date": "15 Juni 2024",
+        "location": "Dragon Ball Z",
+        "address": "Jl. Sudirman No. 456, Medan",
+        "color": "from-purple-500 to-indigo-500",
+        "lat": -6.2215,
+        "lng": 106.8145,
+        "mapUrl": "https://www.google.com/maps?q=-6.2215,106.8145"
+      }
+    ]
+  },
+  "gallery": {
+    "photos": [
+      {
+        "id": "photo-1",
+        "src": "https://picsum.photos/seed/photo1/600/400",
+        "alt": "Momen spesial 1",
+        "liked": false
+      },
+      {
+        "id": "photo-2",
+        "src": "https://picsum.photos/seed/photo2/600/400",
+        "alt": "Momen spesial 2",
+        "liked": false
+      },
+      {
+        "id": "photo-3",
+        "src": "https://picsum.photos/seed/photo3/600/400",
+        "alt": "Momen spesial 3",
+        "liked": false
+      },
+      {
+        "id": "photo-4",
+        "src": "https://picsum.photos/seed/photo4/600/400",
+        "alt": "Momen spesial 4",
+        "liked": false
+      },
+      {
+        "id": "photo-5",
+        "src": "https://picsum.photos/seed/photo5/600/400",
+        "alt": "Momen spesial 5",
+        "liked": false
+      },
+      {
+        "id": "photo-6",
+        "src": "https://picsum.photos/seed/photo6/600/400",
+        "alt": "Momen spesial 6",
+        "liked": false
+      },
+      {
+        "id": "photo-7",
+        "src": "https://picsum.photos/seed/photo7/600/400",
+        "alt": "Momen spesial 7",
+        "liked": false
+      },
+      {
+        "id": "photo-8",
+        "src": "https://picsum.photos/seed/photo8/600/400",
+        "alt": "Momen spesial 8",
+        "liked": false
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "id": "human-destroyer",
+      "quote": "Semoga pernikahan kalian berjalan lancar dan penuh berkah. Selamat menempuh hidup baru!",
+      "name": "Human Destroyer",
+      "designation": "Pahlawan Rusak",
+      "src": "https://picsum.photos/300/300?random=9"
+    },
+    {
+      "id": "holly-sword-babaleon",
+      "quote": "Kalian adalah pasangan yang sangat cocok. Semoga selalu bahagia dan harmonis selamanya.",
+      "name": "Holly Sword Babaleon",
+      "designation": "Saudari Holly Sword Babaleon",
+      "src": "https://picsum.photos/300/300?random=10"
+    },
+    {
+      "id": "isekai",
+      "quote": "Doa terbaik untuk pernikahan kalian. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.",
+      "name": "Isekai",
+      "designation": "Guru Mengaji",
+      "src": "https://picsum.photos/300/300?random=11"
+    },
+    {
+      "id": "princess-lemonade",
+      "quote": "Kalian adalah contoh pasangan yang ideal. Semoga cinta kalian abadi selamanya.",
+      "name": "Ibu Princess Lemonade",
+      "designation": "Ibu Princess Lemonade",
+      "src": "https://picsum.photos/300/300?random=12"
+    },
+    {
+      "id": "babaleon",
+      "quote": "Selamat untuk pernikahan kalian. Semoga menjadi keluarga yang bahagia dan harmonis.",
+      "name": "Babaleon",
+      "designation": "Ayah Babaleon",
+      "src": "https://picsum.photos/300/300?random=13"
+    }
+  ],
+  "rsvp": {
+    "title": "Konfirmasi Kehadiran",
+    "subtitle": "Kehadiran Anda adalah kehormatan bagi kami",
+    "thankYouMessage": "Terima kasih atas doa dan dukungannya"
+  },
+  "music": {
+    "enabled": true,
+    "songPath": "/song/ost-song.mp3",
+    "songTitle": "Wedding Song",
+    "autoplay": true,
+    "loop": true,
+    "volume": 0.5
+  }
+}

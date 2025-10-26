@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card-hover-effect";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { Spotlight } from "@/components/ui/spotlight";
 import { CountdownTimer } from "@/components/ui/countdown-timer";
+import { useWeddingData } from "@/hooks/useWeddingData";
+import { useMusic } from "@/hooks/useMusic";
 import { ClientOnly } from "@/components/ui/client-only";
 import {
   Heart,
@@ -34,11 +36,37 @@ const generateParticles = () => {
 const particles = generateParticles();
 
 export const HeroSection = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { data, loading, error } = useWeddingData();
+  const music = useMusic(
+    data?.music || {
+      enabled: false,
+      songPath: "",
+      songTitle: "",
+      autoplay: false,
+      loop: true,
+      volume: 0.5,
+    }
+  );
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  if (loading) {
+    return (
+      <div className="relative min-h-screen flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <div className="relative min-h-screen flex items-center justify-center">
+        <div className="text-white text-xl">Error loading data</div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -131,7 +159,7 @@ export const HeroSection = () => {
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400">
-                Ahmad
+                {data.hero.groomName}
               </span>
               <motion.span
                 animate={{ scale: [1, 1.3, 1], rotate: [0, 5, -5, 0] }}
@@ -141,7 +169,7 @@ export const HeroSection = () => {
                 &
               </motion.span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-                Siti
+                {data.hero.brideName}
               </span>
             </h1>
           </div>
@@ -173,9 +201,11 @@ export const HeroSection = () => {
                 <Calendar className="w-6 h-6 text-pink-400" />
                 <div>
                   <p className="text-2xl md:text-3xl font-bold text-white">
-                    Sabtu, 15 Juni 2024
+                    {data.hero.weddingDate}
                   </p>
-                  <p className="text-gray-400 text-sm">Pukul 08:00 WIB</p>
+                  <p className="text-gray-400 text-sm">
+                    {data.hero.weddingTime}
+                  </p>
                 </div>
               </div>
 
@@ -185,9 +215,9 @@ export const HeroSection = () => {
                 <MapPin className="w-6 h-6 text-blue-400" />
                 <div>
                   <p className="text-lg text-white font-semibold">
-                    Masjid Al-Ikhlas
+                    {data.hero.venue}
                   </p>
-                  <p className="text-gray-400 text-sm">Jakarta Selatan</p>
+                  <p className="text-gray-400 text-sm">{data.hero.location}</p>
                 </div>
               </div>
             </div>
@@ -205,7 +235,7 @@ export const HeroSection = () => {
             Counting Down To Our Special Day
           </p>
           <ClientOnly>
-            <CountdownTimer targetDate="2024-06-15T08:00:00" />
+            <CountdownTimer targetDate={data.hero.targetDate} />
           </ClientOnly>
         </motion.div>
 
@@ -217,10 +247,9 @@ export const HeroSection = () => {
           className="mb-6"
         >
           <p className="text-gray-500 text-xs italic max-w-xl mx-auto leading-relaxed">
-            &ldquo;Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia
-            menciptakan pasangan-pasangan untukmu dari jenismu sendiri&rdquo;
+            &ldquo;{data.hero.quote}&rdquo;
           </p>
-          <p className="text-pink-400 text-xs mt-1">— QS. Ar-Rum: 21</p>
+          <p className="text-pink-400 text-xs mt-1">{data.hero.quoteSource}</p>
         </motion.div>
 
         {/* CTA Buttons */}
@@ -250,19 +279,30 @@ export const HeroSection = () => {
           </motion.button>
 
           {/* Music Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300"
-          >
-            <div className="flex items-center gap-3 text-white font-semibold">
-              <Music
-                className={`w-6 h-6 ${isPlaying ? "animate-pulse" : ""}`}
-              />
-              <span>{isPlaying ? "Pause Music" : "Play Music"}</span>
-            </div>
-          </motion.button>
+          {music.enabled && (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={music.togglePlay}
+              disabled={music.isLoading}
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300 disabled:opacity-50"
+            >
+              <div className="flex items-center gap-3 text-white font-semibold">
+                <Music
+                  className={`w-6 h-6 ${
+                    music.isPlaying ? "animate-pulse" : ""
+                  }`}
+                />
+                <span>
+                  {music.isLoading
+                    ? "Loading..."
+                    : music.isPlaying
+                    ? "Pause Music"
+                    : "Play Music"}
+                </span>
+              </div>
+            </motion.button>
+          )}
         </motion.div>
 
         {/* Scroll indicator */}
