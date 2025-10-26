@@ -18,7 +18,7 @@ export const useMusic = (config: MusicConfig) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (!config.enabled) return;
+    if (!config.enabled || !config.songPath) return;
 
     // Create audio element
     const audio = new Audio(config.songPath);
@@ -28,9 +28,13 @@ export const useMusic = (config: MusicConfig) => {
 
     // Event listeners
     const handleLoadStart = () => setIsLoading(true);
-    const handleCanPlay = () => setIsLoading(false);
-    const handleError = () => {
-      setError("Failed to load music");
+    const handleCanPlay = () => {
+      setIsLoading(false);
+      console.log("Music loaded successfully");
+    };
+    const handleError = (e: any) => {
+      console.error("Music error:", e);
+      setError(`Failed to load music: ${config.songPath}`);
       setIsLoading(false);
     };
     const handleEnded = () => {
@@ -38,11 +42,23 @@ export const useMusic = (config: MusicConfig) => {
         setIsPlaying(false);
       }
     };
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
 
     audio.addEventListener("loadstart", handleLoadStart);
     audio.addEventListener("canplay", handleCanPlay);
     audio.addEventListener("error", handleError);
     audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+
+    // Try autoplay if enabled (may fail due to browser policy)
+    if (config.autoplay) {
+      audio.play().catch((err) => {
+        console.log("Autoplay blocked by browser:", err);
+        setError("Autoplay blocked. Click play button to start music.");
+      });
+    }
 
     // Cleanup
     return () => {
@@ -50,6 +66,8 @@ export const useMusic = (config: MusicConfig) => {
       audio.removeEventListener("canplay", handleCanPlay);
       audio.removeEventListener("error", handleError);
       audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
       audio.pause();
       audio.src = "";
     };

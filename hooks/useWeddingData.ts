@@ -3,6 +3,11 @@
 import { useState, useEffect } from "react";
 
 interface WeddingData {
+  metadata: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
   hero: {
     groomName: string;
     brideName: string;

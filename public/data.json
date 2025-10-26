@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "title": "Undangan Digital - Jaja & Elsa",
+    "description": "Undangan pernikahan digital dengan efek visual yang menakjubkan",
+    "keywords": "undangan digital, pernikahan, wedding invitation"
+  },
   "hero": {
     "groomName": "Jaja",
     "brideName": "Elsa",
@@ -21,7 +26,7 @@
         "father": "Bapak Human Destroyer",
         "mother": "Ibu Princess Lemonade"
       },
-      "instagram": "@jajavalenntino",
+      "instagram": "@jaja_valentinoo",
       "image": "https://picsum.photos/seed/groom/400/400",
       "description": "Putra pertama dari pasangan"
     },
@@ -33,7 +38,7 @@
         "father": "Bapak Isekai ",
         "mother": "Ibu Holly Sword Babaleon"
       },
-      "instagram": "@elsaputrimayantisimamarta",
+      "instagram": "#",
       "image": "https://picsum.photos/seed/bride/400/400",
       "description": "Putri pertama dari pasangan"
     }
@@ -73,7 +78,7 @@
       {
         "title": "Akad Nikah",
         "time": "08:00 WIB",
-        "date": "15 Juni 2024",
+        "date": "20 Desember 2028",
         "location": "Dunia Anime Onepiec",
         "address": "Jl. Sudirman No. 456, Medan",
         "color": "from-pink-500 to-rose-500",
@@ -84,7 +89,7 @@
       {
         "title": "Resepsi Pernikahan",
         "time": "19:00 WIB",
-        "date": "15 Juni 2024",
+        "date": "20 Desember 2028",
         "location": "Dragon Ball Z",
         "address": "Jl. Sudirman No. 456, Medan",
         "color": "from-purple-500 to-indigo-500",

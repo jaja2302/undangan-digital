@@ -11,69 +11,38 @@ import {
   Sparkles,
   Navigation,
 } from "lucide-react";
+import { useWeddingData } from "@/hooks/useWeddingData";
 import { SectionBackground } from "@/components/ui/section-background";
 
 export const EventDetails = () => {
-  // Timeline perjalanan cinta dengan foto
-  const journey = [
-    {
-      year: "2020",
-      title: "Pertemuan Pertama",
-      description: "Takdir mempertemukan kami di kampus",
-      icon: "✨",
-      image: "https://picsum.photos/seed/first-meet/400/300",
-    },
-    {
-      year: "2021",
-      title: "Jadian",
-      description: "Dimulainya komitmen untuk saling melengkapi",
-      icon: "💕",
-      image: "https://picsum.photos/seed/dating/400/300",
-    },
-    {
-      year: "2023",
-      title: "Lamaran",
-      description: "Momen sakral penyatuan dua keluarga",
-      icon: "💍",
-      image: "https://picsum.photos/seed/engagement/400/300",
-    },
-    {
-      year: "2024",
-      title: "Pernikahan",
-      description: "Hari yang kami nantikan bersama",
-      icon: "👰",
-      image: "https://picsum.photos/seed/wedding/400/300",
-    },
-  ];
-
-  const events = [
-    {
-      title: "Akad Nikah",
-      time: "08:00 WIB",
-      date: "15 Juni 2024",
-      location: "Masjid Al-Ikhlas",
-      address: "Jl. Merdeka No. 123, Jakarta",
-      color: "from-pink-500 to-rose-500",
-      lat: -6.2088,
-      lng: 106.8456,
-      mapUrl: "https://www.google.com/maps?q=-6.2088,106.8456",
-    },
-    {
-      title: "Resepsi Pernikahan",
-      time: "19:00 WIB",
-      date: "15 Juni 2024",
-      location: "Gedung Serbaguna",
-      address: "Jl. Sudirman No. 456, Jakarta",
-      color: "from-purple-500 to-indigo-500",
-      lat: -6.2215,
-      lng: 106.8145,
-      mapUrl: "https://www.google.com/maps?q=-6.2215,106.8145",
-    },
-  ];
+  const { data, loading, error } = useWeddingData();
 
   const openGoogleMaps = (url: string) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
+
+  if (loading) {
+    return (
+      <SectionBackground id="events">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-xl">Loading...</div>
+        </div>
+      </SectionBackground>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <SectionBackground id="events">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-xl">Error loading data</div>
+        </div>
+      </SectionBackground>
+    );
+  }
+
+  const journey = data.events.journey;
+  const events = data.events.ceremonies;
 
   return (
     <SectionBackground id="events">

@@ -2,7 +2,6 @@
 
 import React from "react";
 import { FloatingNav } from "@/components/ui/floating-navbar";
-import { MusicPlayer } from "@/components/ui/music-player";
 import { GiftRegistry } from "@/components/ui/gift-registry";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { CoupleSection } from "@/components/sections/CoupleSection";
@@ -51,7 +50,6 @@ export default function WeddingInvitation() {
       <TestimonialsSection />
       <GiftRegistry />
       <RSVPSection />
-      <MusicPlayer />
     </div>
   );
 }

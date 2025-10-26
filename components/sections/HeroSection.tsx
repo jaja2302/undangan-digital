@@ -5,18 +5,10 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card-hover-effect";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { Spotlight } from "@/components/ui/spotlight";
-import { CountdownTimer } from "@/components/ui/countdown-timer";
 import { useWeddingData } from "@/hooks/useWeddingData";
-import { useMusic } from "@/hooks/useMusic";
+import { CountdownTimer } from "@/components/ui/countdown-timer";
 import { ClientOnly } from "@/components/ui/client-only";
-import {
-  Heart,
-  Calendar,
-  MapPin,
-  Music,
-  ChevronDown,
-  Sparkles,
-} from "lucide-react";
+import { Heart, Calendar, MapPin, ChevronDown, Sparkles } from "lucide-react";
 
 // Generate particles outside component to avoid impure function calls during render
 const generateParticles = () => {
@@ -37,16 +29,6 @@ const particles = generateParticles();
 
 export const HeroSection = () => {
   const { data, loading, error } = useWeddingData();
-  const music = useMusic(
-    data?.music || {
-      enabled: false,
-      songPath: "",
-      songTitle: "",
-      autoplay: false,
-      loop: true,
-      volume: 0.5,
-    }
-  );
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -277,32 +259,6 @@ export const HeroSection = () => {
               <span>Konfirmasi Kehadiran</span>
             </div>
           </motion.button>
-
-          {/* Music Button */}
-          {music.enabled && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={music.togglePlay}
-              disabled={music.isLoading}
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300 disabled:opacity-50"
-            >
-              <div className="flex items-center gap-3 text-white font-semibold">
-                <Music
-                  className={`w-6 h-6 ${
-                    music.isPlaying ? "animate-pulse" : ""
-                  }`}
-                />
-                <span>
-                  {music.isLoading
-                    ? "Loading..."
-                    : music.isPlaying
-                    ? "Pause Music"
-                    : "Play Music"}
-                </span>
-              </div>
-            </motion.button>
-          )}
         </motion.div>
 
         {/* Scroll indicator */}
