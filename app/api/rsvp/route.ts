@@ -1,9 +1,10 @@
 // app/api/rsvp/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 
-const filePath = path.join(process.cwd(), "public", "attendance.json");
+// JSONBin.io configuration
+const JSONBIN_API_URL = "https://api.jsonbin.io/v3/b";
+const JSONBIN_BIN_ID = process.env.JSONBIN_BIN_ID || "your-bin-id";
+const JSONBIN_API_KEY = process.env.JSONBIN_API_KEY || "your-api-key";
 
 // Type definitions
 interface Attendee {
@@ -26,20 +27,46 @@ interface AttendanceData {
   ipRecords: IpRecord[];
 }
 
-// Ensure file exists
-function ensureFileExists() {
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(
-      filePath,
-      JSON.stringify(
-        {
-          attendees: [],
-          ipRecords: [],
+// Fetch data from JSONBin.io
+async function fetchData(): Promise<AttendanceData> {
+  try {
+    const response = await fetch(
+      `${JSONBIN_API_URL}/${JSONBIN_BIN_ID}/latest`,
+      {
+        headers: {
+          "X-Master-Key": JSONBIN_API_KEY,
         },
-        null,
-        2
-      )
+      }
     );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status}`);
+    }
+
+    const result = await response.json();
+    return result.record || { attendees: [], ipRecords: [] };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return { attendees: [], ipRecords: [] };
+  }
+}
+
+// Save data to JSONBin.io
+async function saveData(data: AttendanceData): Promise<boolean> {
+  try {
+    const response = await fetch(`${JSONBIN_API_URL}/${JSONBIN_BIN_ID}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": JSONBIN_API_KEY,
+      },
+      body: JSON.stringify(data),
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error("Error saving data:", error);
+    return false;
   }
 }
 
@@ -62,15 +89,14 @@ function getClientIp(request: NextRequest): string {
 // GET - Fetch all attendees
 export async function GET() {
   try {
-    ensureFileExists();
-    const fileData = fs.readFileSync(filePath, "utf-8");
-    const data = JSON.parse(fileData);
+    const data = await fetchData();
 
     // Only return attendees, not IP records for privacy
     return NextResponse.json({
       attendees: data.attendees || [],
     });
   } catch (error) {
+    console.error("Error in GET:", error);
     return NextResponse.json(
       { error: "Failed to fetch data" },
       { status: 500 }
@@ -81,13 +107,11 @@ export async function GET() {
 // POST - Add new attendee
 export async function POST(request: NextRequest) {
   try {
-    ensureFileExists();
     const body = await request.json();
     const clientIp = getClientIp(request);
 
-    // Read current data
-    const fileData = fs.readFileSync(filePath, "utf-8");
-    const data: AttendanceData = JSON.parse(fileData);
+    // Read current data from JSONBin.io
+    const data = await fetchData();
 
     // Initialize arrays if they don't exist
     if (!data.attendees) data.attendees = [];
@@ -138,8 +162,12 @@ export async function POST(request: NextRequest) {
       (record: IpRecord) => record.timestamp > thirtyDaysAgo
     );
 
-    // Write back to file
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    // Save data to JSONBin.io
+    const saveSuccess = await saveData(data);
+
+    if (!saveSuccess) {
+      throw new Error("Failed to save data to external storage");
+    }
 
     return NextResponse.json({
       success: true,
